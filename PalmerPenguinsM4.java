@@ -1,6 +1,6 @@
 // PalmerPenguinsM4.java
-// 
-// 
+// Christin George Thomas
+// 09/27/2026
 // Reads the CSV file and parses the data
 
 import java.io.*;
@@ -15,29 +15,37 @@ public class PalmerPenguinsM4 {
     static final String SP_ADELIE = "Adelie";
     
     public static void main(String[] args) {
-        // TODO 1 Declare the variables
-    
-        // Read the headers
-        String line = CSVReader.readFile(FILE_NAME, currRow++);
-        if (line == null) {
-            System.out.println("Error: The file is empty or could not be read.");
-            return; // Exit the program if no headers are found
-        }
-        System.out.println("found headers:\n" + line);
-    
-        // Process each subsequent row
-        while ((line = CSVReader.readFile(FILE_NAME, currRow++)) != null) {
-            // Check species in the line, increment appropriate accumulator
-            if (line.contains(SP_CHINSTRAP)) {
-                specChinStrapCount++;
-            // TODO 2 complete the branches to increment the accumulators    
-            } else if            
-        }
-    
-        // Print the results
-        // TODO 3 print all accumulators
 
+    // TODO 1 Declare the variables
+    int currRow = 0;
+    int specChinStrapCount = 0;
+    int specGentooCount = 0;
+    int specAdelieCount = 0;
+
+    // Read the headers
+    String line = CSVReader.readFile(FILE_NAME, currRow++);
+    if (line == null) {
+        System.out.println("Error: The file is empty or could not be read.");
+        return;
     }
+    System.out.println("found headers:\n" + line);
+
+    // Process each subsequent row
+    while ((line = CSVReader.readFile(FILE_NAME, currRow++)) != null) {
+        if (line.contains(SP_CHINSTRAP)) {
+            specChinStrapCount++;
+        } else if (line.contains(SP_GENTOO)) {
+            specGentooCount++;
+        } else if (line.contains(SP_ADELIE)) {
+            specAdelieCount++;
+        }
+    }
+
+    // TODO 3 print all accumulators
+    System.out.println("Chinstrap: " + specChinStrapCount);
+    System.out.println("Gentoo: " + specGentooCount);
+    System.out.println("Adelie: " + specAdelieCount);
+}
 }
 
 class CSVReader {
